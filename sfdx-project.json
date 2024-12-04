@@ -1,0 +1,18 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "package": "SAM.gov Flow Integration",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "versionDescription": "Salesforce External Service and Flow Callout for SAM.gov Entity Management"
+    }
+  ],
+  "name": "dx-empty",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "62.0",
+  "packageAliases": {
+    "SAM.gov Flow Integration": "0HoWs0000000fPlKAI"
+  }
+}

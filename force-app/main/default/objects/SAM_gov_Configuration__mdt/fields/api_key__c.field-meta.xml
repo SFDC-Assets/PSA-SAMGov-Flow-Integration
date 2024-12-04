@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>api_key__c</fullName>
+    <caseSensitive>true</caseSensitive>
+    <description>Holds your organization&apos;s API key. Please check and be aware of the SAM.gov API Key Rate Limits https://open.gsa.gov/api/entity-api/#api-key-rate-limits</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>api_key</label>
+    <length>60</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>
