@@ -1,15 +1,16 @@
 ![Public Sector Accelerators logo](/docs/Logo_GPSAccelerators_v01.png)
 
-# SAM.gov Flow Integration with External Service
-
-<!-- [Required. Show overview of the Accelerator. This should match the approved content used on the Accelerator listing.] -->
+# SAM.gov Integration with Flow and External Service
+**Provides a no-code integration with SAM.gov for querying and retrieving verified entity information.**
 
 Accelerator Listing: [insert url to the public listing on the Accelerator site](https://gpsaccelerators.developer.salesforce.com/) (tbd once published)
 
 
 ## Description
 
-The Salesforce platform provides native capabilities for calling external data sources through the use of [External Services](https://help.salesforce.com/s/articleView?id=sf.external_services.htm&type=5). These services, once configured, can be consumed throughout the rest of the platform such as via Apex as well as through Flow. Using no-code capabilities, this package provides the External Service for calling the [System for Award Management (SAM.gov) Entity Management API](https://open.gsa.gov/api/entity-api/) with an example of how you can search for an entity via Cage Code and consume the response using Salesforce Flow.
+This Accelerator allows you to integrate Salesforce with SAM.gov using native, no-code capabilities.  With it, you can call the [System for Award Management (SAM.gov) Entity Management API](https://open.gsa.gov/api/entity-api/).  The Accelerator includes an example using Salesforce Flow that searches for an entity using a CAGE Code and returns commonly-used data elements.
+
+This integration uses the Salesforce Platform's native capabilities for calling an external data source (SAM.gov) using an [External Service](https://help.salesforce.com/s/articleView?id=sf.external_services.htm&type=5). This service can be used by Salesforce in no/low-code (e.g. Flow) and pro-code (e.g. Apex) ways.
 
 > [!CAUTION] 
 > - Use of the SAM.gov API requires that you register with the [SAM.gov website](https://sam.gov/content/home) through your organization, request the appropriate role(s), and request an API key. *This package does not include an API key; you must provide your own via the post-installation configuration in order to use this capability.*
@@ -67,8 +68,8 @@ In order to use the External Service:
 
 ### Create a Parent Flow
 
-This Accelerator has included an example autolaunched flow (SAM.gov Entity Search - Cage Code) using the External Service to search for an entity based on the organization's Cage Code, and returns certain information from the API response about the entity back to the parent flow. You can test this flow after completing the above base configuration steps by opening the latest version in the Flow Builder and using the Debug option to enter a cageCode value. 
-1. From the Automation app or the Setup menu, navigate to the SAM.gov Entity Search - Cage Code flow and open the latest version
+This Accelerator has included an example autolaunched flow (SAM.gov Entity Search - CAGE Code) using the External Service to search for an entity based on the organization's CAGE Code, and returns certain information from the API response about the entity back to the parent flow. You can test this flow after completing the above base configuration steps by opening the latest version in the Flow Builder and using the Debug option to enter a cageCode value. 
+1. From the Automation app or the Setup menu, navigate to the SAM.gov Entity Search - CAGE Code flow and open the latest version
 2. Click the Debug button in the top-right
 3. Enter a value in the cageCode field under Input Variables and click Run
 4. A successful callout should follow the entire "Query Success" path and have data in the `samGovEntityRegistrationValues` collection (the flow's output or return variable) which can be seen by clicking the accordion next to the "Assigment: Set Transform Collection for Output" step of the Debug Details pane on the right
@@ -83,7 +84,7 @@ To properly use this autolaunched flow, you'll want to create a parent flow to c
 4. Click the + under the start element and then click Screen to add a new screen element to the canvas and give the screen a label and API name
 5. Drag and drop a Text component onto the screen which will hold our cage code and give it a label and API name and then click Done
 6. Click the + under the screen element you just added and choose Subflow to add an autolaunched flow action to the canvas
-7. Search for "SAM.gov" to find the SAM.gov Entity Search - Cage Code flow included in the package, click it, and give it a label and API name. Click the cageCode toggle to include our input value and, in the lookup box, choose the screen element from before and then the text component for our cage code
+7. Search for "SAM.gov" to find the SAM.gov Entity Search - CAGE Code flow included in the package, click it, and give it a label and API name. Click the cageCode toggle to include our input value and, in the lookup box, choose the screen element from before and then the text component for our cage code
 8. Click the + under the subflow element and then click Decision to add conditional logic to your flow and give it a label and API name
     1. Add a label and API name for a 'successful' outcome. The example flow returns not only the results from the API callout, but a boolean value of true if it receives a [200 response code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)
     2. Leave the condition requirements as All conditions are met and, in the Resource lookup box, choose the Outputs from the subflow, then the samGovCalloutSuccess value
@@ -110,7 +111,7 @@ The above is merely an example to display information on a screen given a user's
 Experience Cloud Guest User records cannot be granted access via a permission set to the necessary external credential. In order to allow access, you must go to the profile for the site's Guest User and edit the appropriate permissions:
 1. Grant Read access to the User External Credentials object in the Object Settings of the profile
 2. Grant access to *samGovApiKey - All Users* in the External Credential Principal Access options
-3. Grant access to any parent Flows you create with calls to the included example SAM.gov Entity Search - Cage Code subflow or those you create yourself. Action must be taken to edit the access options before granting access through profiles:
+3. Grant access to any parent Flows you create with calls to the included example SAM.gov Entity Search - CAGE Code subflow or those you create yourself. Action must be taken to edit the access options before granting access through profiles:
     1. From the Flow menu, click the action menu for the parent flow you created and choose *Edit Access*
     2. Check the box next to "Override default behavior and restrict access to enabled profiles or permission sets."
     3. Select and add the correct profile(s) for the Guest Users and sites who need access
@@ -159,7 +160,7 @@ If your organization needs additional query parameters added to the configuratio
 ## Potential Use Cases
 There are a number of different scenarios for which you can use this integration with SAM.gov. These are just a few examples of various levels of complexity, but you can use similar patterns, and extend the External Service using the instructions above, to bring your own ideas to life.
 - Forms entry: Use the External Service to simplify data entry and ensure required data is included and correct
-    - E.g. Take a parameter like a Cage Code and automatically fill in the required data fields based on the response to simplify an application process in a screen flow
+    - E.g. Take a parameter like a CAGE Code and automatically fill in the required data fields based on the response to simplify an application process in a screen flow
 - Automated validation: Use the External Service to verify information against SAM.gov and update related fields
     - E.g. Run a record-triggered flow when a new Account is created to automatically check and update a custom SAM Registered status field, congressional district, address, or other data on the record
 - Entity search against requirements: Use the External Service to query against procurement requirements tracked in Salesforce to find potential partners
@@ -176,7 +177,7 @@ There are a number of different scenarios for which you can use this integration
 
 ## Revision History
 
-**1.1 Winter 2024 release (12 Nov 2024)** - Includes the External Service and related configurations with an example subflow for searching entities by Cage Code.
+**1.1 Winter 2024 release (12 Nov 2024)** - Includes the External Service and related configurations with an example subflow for searching entities by CAGE Code.
 
 ## Terms of Use
 
