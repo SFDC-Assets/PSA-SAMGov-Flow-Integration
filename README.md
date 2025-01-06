@@ -3,7 +3,7 @@
 # SAM.gov Integration with Flow and External Service
 **Provides a no-code integration with SAM.gov for querying and retrieving verified entity information.**
 
-Accelerator Listing: [insert url to the public listing on the Accelerator site](https://gpsaccelerators.developer.salesforce.com/) (tbd once published)
+View: [Accelerator Site Listing](https://pubsec-accelerators.my.site.com/accelerators/accelerator/a0wDo000002494qIAA/samgov-integration-with-flow-and-external-service)
 
 
 ## Description
